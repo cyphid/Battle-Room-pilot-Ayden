@@ -82,32 +82,23 @@ def move(game_state: typing.Dict) -> typing.Dict:
     elif my_head["y"] == board_height - 1:
         is_move_safe["up"] = False
     
-    # Prevent your Battlesnake from colliding with itself
-    my_body = game_state['you']['body']
-
-    for segment in my_body[1:]:
-        if segment["x"] == my_head["x"] and segment["y"] == my_head["y"]:
-            is_move_safe["up"] = False
-            is_move_safe["down"] = False
-            is_move_safe["left"] = False
-            is_move_safe["right"] = False
-            break
     
-    # TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
-    snakes = game_state["board"]["snakes"]
-
-    for snake in snakes:
-        # Ignore your own snake
-        if snake["id"] == game_state["you"]["id"]:
-            continue
+    # TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes or itself
+    all_snakes = game_state['board']['snakes']  # Get all snakes on the board
+    for snake in all_snakes:
+        for segment in snake['body']:
+            # Check if a segment is directly adjacent to your head
+            if segment['x'] == my_head['x'] and segment['y'] == my_head['y'] + 1:
+                is_move_safe['up'] = False
+            if segment['x'] == my_head['x'] and segment['y'] == my_head['y'] - 1:
+                is_move_safe['down'] = False
+            if segment['x'] == my_head['x'] + 1 and segment['y'] == my_head['y']:
+                is_move_safe['right'] = False
+            if segment['x'] == my_head['x'] - 1 and segment['y'] == my_head['y']:
+                is_move_safe['left'] = False
+  
     
-        for body_part in snake["body"]:
-            if body_part["x"] == my_head["x"] and body_part["y"] == my_head["y"]:
-                is_move_safe["up"] = False
-                is_move_safe["down"] = False
-                is_move_safe["left"] = False
-                is_move_safe["right"] = False
-                break
+    
 
     # Are there any safe moves left?
     safe_moves = []
@@ -119,14 +110,70 @@ def move(game_state: typing.Dict) -> typing.Dict:
         print(f"MOVE {game_state['turn']}: No safe moves detected! Moving down")
         return {"move": "down"}
 
-    # Choose a random move from the safe ones
-    next_move = random.choice(safe_moves)
-
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
-    # food = game_state['board']['food']
-
-    print(f"MOVE {game_state['turn']}: {next_move}")
-    return {"move": next_move}
+    food = game_state['board']['food']
+    heads = []
+    tails = []
+    
+    for snake in game_state['board']['snakes']:
+        if snake['body'][0] != game_state['you']['body'][0]:
+            heads.append(snake['body'][0])
+            tails.append(snake['body'][-1])
+    
+        for segment in snake['body']:
+            if segment != game_state['you']['body'][0]:
+                if segment == game_state['you']['body'][1]:
+                    tails.append(segment)
+                    break
+      
+    possible_moves = []
+    head = game_state['you']['body'][0]
+    
+    for move in ["up", "down", "left", "right"]:
+        if move == "up":
+            next_pos = {"x": head['x'], "y": head['y'] + 1}
+        elif move == "down":
+            next_pos = {"x": head['x'], "y": head['y'] - 1}
+        elif move == "left":
+            next_pos = {"x": head['x'] - 1, "y": head['y']}
+        elif move == "right":
+            next_pos = {"x": head['x'] + 1, "y": head['y']}
+    
+        if next_pos in heads:
+            continue
+    
+        if next_pos not in tails or len(tails) == 0:
+            possible_moves.append(move)
+    
+    if len(possible_moves) == 0:
+        print(f"MOVE {game_state['turn']}: No safe moves detected! Moving down")
+        return {"move": "down"}
+    
+    best_move = ''
+    min_dist = float('inf')
+    
+    for move in possible_moves:
+        if move == "up":
+            next_pos = {"x": head['x'], "y": head['y'] + 1}
+        elif move == "down":
+            next_pos = {"x": head['x'], "y": head['y'] - 1}
+        elif move == "left":
+            next_pos = {"x": head['x'] - 1, "y": head['y']}
+        elif move == "right":
+            next_pos = {"x": head['x'] + 1, "y": head['y']}
+        
+        dist = abs(food[0]['x'] - next_pos['x']) + abs(food[0]['y'] - next_pos['y'])
+      
+        if dist < min_dist:
+            min_dist = dist
+            best_move = move
+    
+    if best_move in safe_moves:
+      print(f"MOVE {game_state['turn']}: {best_move}")
+      return {"move": best_move}
+    else:
+      print(f"MOVE {game_state['turn']}: {random.choice(safe_moves)}")
+      return {"move": random.choice(safe_moves)}
 
 
 # Start server when `python main.py` is run
