@@ -30,6 +30,20 @@ python-versions = ">=3.6"
 frozenlist = ">=1.1.0"
 
 [[package]]
+name = "asgiref"
+version = "3.7.0"
+description = "ASGI specs, helper code, and adapters"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+typing-extensions = {version = "*", markers = "python_version < \"3.11\""}
+
+[package.extras]
+tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
+
+[[package]]
 name = "async-timeout"
 version = "4.0.2"
 description = "Timeout context manager for asyncio programs"
@@ -58,6 +72,22 @@ description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "cfl-common"
+version = "6.39.5"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = "3.2.23"
+django-countries = "7.3.1"
+django-two-factor-auth = "1.13.2"
+djangorestframework = "3.13.1"
+pgeocode = "0.4.0"
+pyjwt = "2.6.0"
 
 [[package]]
 name = "charset-normalizer"
@@ -96,6 +126,156 @@ description = "An implementation of the Debug Adapter Protocol for Python"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "django"
+version = "3.2.23"
+description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+asgiref = ">=3.3.2,<4"
+pytz = "*"
+sqlparse = ">=0.2.2"
+
+[package.extras]
+argon2 = ["argon2-cffi (>=19.1.0)"]
+bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-countries"
+version = "7.3.1"
+description = "Provides a country field for Django models."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+typing-extensions = "*"
+
+[package.extras]
+dev = ["tox", "black", "django", "pytest", "pytest-django", "djangorestframework", "graphene-django"]
+maintainer = ["transifex-client", "zest.releaser", "django"]
+pyuca = ["pyuca"]
+test = ["pytest", "pytest-django", "pytest-cov", "djangorestframework", "graphene-django"]
+
+[[package]]
+name = "django-csp"
+version = "3.7"
+description = "Django Content Security Policy support."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Django = ">=1.8"
+
+[package.extras]
+jinja2 = ["jinja2 (>=2.9.6)"]
+tests = ["pytest (<4.0)", "pytest-django", "pytest-flakes (==1.0.1)", "pytest-pep8 (==1.0.6)", "pep8 (==1.4.6)", "mock (==1.0.1)", "six (==1.12.0)", "jinja2 (>=2.9.6)"]
+
+[[package]]
+name = "django-formtools"
+version = "2.4.1"
+description = "A set of high-level abstractions for Django forms"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
+name = "django-js-reverse"
+version = "0.9.1"
+description = "Javascript url handling for Django that doesn't hurt."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Django = ">=1.5"
+
+[[package]]
+name = "django-otp"
+version = "1.3.0"
+description = "A pluggable framework for adding two-factor authentication to Django using one-time passwords."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+django = ">=3.2"
+
+[package.extras]
+qrcode = ["qrcode"]
+
+[[package]]
+name = "django-phonenumber-field"
+version = "6.4.0"
+description = "An international phone number field for django models."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Django = ">=3.2"
+
+[package.extras]
+phonenumbers = ["phonenumbers (>=7.0.2)"]
+phonenumberslite = ["phonenumberslite (>=7.0.2)"]
+
+[[package]]
+name = "django-pipeline"
+version = "2.0.8"
+description = "Pipeline is an asset packaging library for Django."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "django-two-factor-auth"
+version = "1.13.2"
+description = "Complete Two-Factor Authentication for Django"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Django = ">=2.2"
+django-formtools = "*"
+django-otp = ">=0.8.0"
+django-phonenumber-field = ">=1.1.0,<7"
+qrcode = ">=4.0.0,<7.99"
+
+[package.extras]
+call = ["twilio (>=6.0)"]
+phonenumbers = ["phonenumbers (>=7.0.9,<8.99)"]
+phonenumberslite = ["phonenumberslite (>=7.0.9,<8.99)"]
+sms = ["twilio (>=6.0)"]
+yubikey = ["django-otp-yubikey"]
+
+[[package]]
+name = "djangorestframework"
+version = "3.13.1"
+description = "Web APIs for Django, made easy."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=2.2"
+pytz = "*"
+
+[[package]]
+name = "docstring-to-markdown"
+version = "0.13"
+description = "On the fly conversion of Python docstrings to markdown"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "flask"
@@ -186,12 +366,28 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "libsass"
+version = "0.22.0"
+description = "Sass for Python: A straightforward binding of libsass for Python."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "markupsafe"
 version = "2.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "more-itertools"
+version = "8.7.0"
+description = "More routines for operating on iterables, beyond itertools"
+category = "main"
+optional = false
+python-versions = ">=3.5"
 
 [[package]]
 name = "multidict"
@@ -221,6 +417,43 @@ python-versions = ">=3.6"
 pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
+name = "pandas"
+version = "2.0.3"
+description = "Powerful data structures for data analysis, time series, and statistics"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+numpy = {version = ">=1.20.3", markers = "python_version < \"3.10\""}
+python-dateutil = ">=2.8.2"
+pytz = ">=2020.1"
+tzdata = ">=2022.1"
+
+[package.extras]
+all = ["beautifulsoup4 (>=4.9.3)", "bottleneck (>=1.3.2)", "brotlipy (>=0.7.0)", "fastparquet (>=0.6.3)", "fsspec (>=2021.07.0)", "gcsfs (>=2021.07.0)", "html5lib (>=1.1)", "hypothesis (>=6.34.2)", "jinja2 (>=3.0.0)", "lxml (>=4.6.3)", "matplotlib (>=3.6.1)", "numba (>=0.53.1)", "numexpr (>=2.7.3)", "odfpy (>=1.4.1)", "openpyxl (>=3.0.7)", "pandas-gbq (>=0.15.0)", "psycopg2 (>=2.8.6)", "pyarrow (>=7.0.0)", "pymysql (>=1.0.2)", "PyQt5 (>=5.15.1)", "pyreadstat (>=1.1.2)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)", "pytest-asyncio (>=0.17.0)", "python-snappy (>=0.6.0)", "pyxlsb (>=1.0.8)", "qtpy (>=2.2.0)", "scipy (>=1.7.1)", "s3fs (>=2021.08.0)", "SQLAlchemy (>=1.4.16)", "tables (>=3.6.1)", "tabulate (>=0.8.9)", "xarray (>=0.21.0)", "xlrd (>=2.0.1)", "xlsxwriter (>=1.4.3)", "zstandard (>=0.15.2)"]
+aws = ["s3fs (>=2021.08.0)"]
+clipboard = ["PyQt5 (>=5.15.1)", "qtpy (>=2.2.0)"]
+compression = ["brotlipy (>=0.7.0)", "python-snappy (>=0.6.0)", "zstandard (>=0.15.2)"]
+computation = ["scipy (>=1.7.1)", "xarray (>=0.21.0)"]
+excel = ["odfpy (>=1.4.1)", "openpyxl (>=3.0.7)", "pyxlsb (>=1.0.8)", "xlrd (>=2.0.1)", "xlsxwriter (>=1.4.3)"]
+feather = ["pyarrow (>=7.0.0)"]
+fss = ["fsspec (>=2021.07.0)"]
+gcp = ["gcsfs (>=2021.07.0)", "pandas-gbq (>=0.15.0)"]
+hdf5 = ["tables (>=3.6.1)"]
+html = ["beautifulsoup4 (>=4.9.3)", "html5lib (>=1.1)", "lxml (>=4.6.3)"]
+mysql = ["SQLAlchemy (>=1.4.16)", "pymysql (>=1.0.2)"]
+output_formatting = ["jinja2 (>=3.0.0)", "tabulate (>=0.8.9)"]
+parquet = ["pyarrow (>=7.0.0)"]
+performance = ["bottleneck (>=1.3.2)", "numba (>=0.53.1)", "numexpr (>=2.7.1)"]
+plot = ["matplotlib (>=3.6.1)"]
+postgresql = ["SQLAlchemy (>=1.4.16)", "psycopg2 (>=2.8.6)"]
+spss = ["pyreadstat (>=1.1.2)"]
+sql-other = ["SQLAlchemy (>=1.4.16)"]
+test = ["hypothesis (>=6.34.2)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)", "pytest-asyncio (>=0.17.0)"]
+xml = ["lxml (>=4.6.3)"]
+
+[[package]]
 name = "parso"
 version = "0.8.3"
 description = "A Python Parser"
@@ -231,6 +464,22 @@ python-versions = ">=3.6"
 [package.extras]
 qa = ["flake8 (==3.8.3)", "mypy (==0.782)"]
 testing = ["docopt", "pytest (<6.0.0)"]
+
+[[package]]
+name = "pgeocode"
+version = "0.4.0"
+description = "Approximate geocoding"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+numpy = "*"
+pandas = "*"
+requests = "*"
+
+[package.extras]
+fuzzy = ["thefuzz"]
 
 [[package]]
 name = "pluggy"
@@ -246,11 +495,33 @@ dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pyflakes"
-version = "2.4.0"
+version = "3.1.0"
 description = "passive checker of Python programs"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.8"
+
+[[package]]
+name = "pyhamcrest"
+version = "2.0.2"
+description = "Hamcrest framework for matcher objects"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
+name = "pyjwt"
+version = "2.6.0"
+description = "JSON Web Token implementation in Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+crypto = ["cryptography (>=3.4.0)"]
+dev = ["sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface", "cryptography (>=3.4.0)", "pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)", "pre-commit"]
+docs = ["sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface"]
+tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
 name = "pyparsing"
@@ -264,50 +535,71 @@ python-versions = ">=3.6.8"
 diagrams = ["railroad-diagrams", "jinja2"]
 
 [[package]]
-name = "python-lsp-jsonrpc"
-version = "1.0.0"
-description = "JSON RPC 2.0 server library"
-category = "dev"
+name = "pypng"
+version = "0.20220715.0"
+description = "Pure Python library for saving and loading PNG images"
+category = "main"
 optional = false
 python-versions = "*"
 
+[[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
+name = "python-lsp-jsonrpc"
+version = "1.1.2"
+description = "JSON RPC 2.0 server library"
+category = "dev"
+optional = false
+python-versions = ">=3.8"
+
 [package.dependencies]
 ujson = ">=3.0.0"
 
 [package.extras]
-test = ["coverage", "pytest-cov", "pytest", "pyflakes", "pycodestyle", "pylint"]
+test = ["pylint", "pycodestyle", "pyflakes", "pytest", "pytest-cov", "coverage"]
 
 [[package]]
 name = "python-lsp-server"
-version = "1.5.0"
+version = "1.9.0"
 description = "Python Language Server for the Language Server Protocol"
 category = "dev"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 
 [package.dependencies]
-jedi = ">=0.17.2,<0.19.0"
+docstring-to-markdown = "*"
+importlib-metadata = {version = ">=4.8.3", markers = "python_version < \"3.10\""}
+jedi = ">=0.17.2,<0.20.0"
 pluggy = ">=1.0.0"
-pyflakes = {version = ">=2.4.0,<2.5.0", optional = true, markers = "extra == \"pyflakes\""}
-python-lsp-jsonrpc = ">=1.0.0"
-rope = {version = ">0.10.5", optional = true, markers = "extra == \"rope\""}
+pyflakes = {version = ">=3.1.0,<3.2.0", optional = true, markers = "extra == \"pyflakes\""}
+python-lsp-jsonrpc = ">=1.1.0,<2.0.0"
+rope = {version = ">1.2.0", optional = true, markers = "extra == \"rope\""}
 ujson = ">=3.0.0"
 whatthepatch = {version = ">=1.0.2,<2.0.0", optional = true, markers = "extra == \"yapf\""}
-yapf = {version = "*", optional = true, markers = "extra == \"yapf\""}
+yapf = {version = ">=0.33.0", optional = true, markers = "extra == \"yapf\""}
 
 [package.extras]
-yapf = ["whatthepatch (>=1.0.2,<2.0.0)", "yapf"]
+all = ["autopep8 (>=2.0.4,<2.1.0)", "flake8 (>=6.1.0,<7)", "mccabe (>=0.7.0,<0.8.0)", "pycodestyle (>=2.11.0,<2.12.0)", "pydocstyle (>=6.3.0,<6.4.0)", "pyflakes (>=3.1.0,<3.2.0)", "pylint (>=2.5.0,<3.1)", "rope (>1.2.0)", "yapf (>=0.33.0)", "whatthepatch (>=1.0.2,<2.0.0)"]
+autopep8 = ["autopep8 (>=1.6.0,<2.1.0)"]
+flake8 = ["flake8 (>=6.1.0,<7)"]
+mccabe = ["mccabe (>=0.7.0,<0.8.0)"]
+pycodestyle = ["pycodestyle (>=2.11.0,<2.12.0)"]
+pydocstyle = ["pydocstyle (>=6.3.0,<6.4.0)"]
+pyflakes = ["pyflakes (>=3.1.0,<3.2.0)"]
+pylint = ["pylint (>=2.5.0,<3.1)"]
+rope = ["rope (>1.2.0)"]
+test = ["pylint (>=2.5.0,<3.1)", "pytest", "pytest-cov", "coverage", "numpy", "pandas", "matplotlib", "pyqt5", "flaky"]
 websockets = ["websockets (>=10.3)"]
-test = ["flaky", "pyqt5", "matplotlib", "pandas", "numpy (<1.23)", "coverage", "pytest-cov", "pytest", "pylint (>=2.5.0)"]
-rope = ["rope (>0.10.5)"]
-pylint = ["pylint (>=2.5.0)"]
-pyflakes = ["pyflakes (>=2.4.0,<2.5.0)"]
-pydocstyle = ["pydocstyle (>=2.0.0)"]
-pycodestyle = ["pycodestyle (>=2.8.0,<2.9.0)"]
-mccabe = ["mccabe (>=0.6.0,<0.7.0)"]
-flake8 = ["flake8 (>=4.0.0,<4.1.0)"]
-autopep8 = ["autopep8 (>=1.6.0,<1.7.0)"]
-all = ["whatthepatch", "yapf", "rope (>=0.10.5)", "pylint (>=2.5.0)", "pyflakes (>=2.4.0,<2.5.0)", "pydocstyle (>=2.0.0)", "pycodestyle (>=2.8.0,<2.9.0)", "mccabe (>=0.6.0,<0.7.0)", "flake8 (>=4.0.0,<4.1.0)", "autopep8 (>=1.6.0,<1.7.0)"]
+yapf = ["yapf (>=0.33.0)", "whatthepatch (>=1.0.2,<2.0.0)"]
 
 [[package]]
 name = "pytoolconfig"
@@ -326,6 +618,53 @@ validation = ["pydantic (>=1.7.4)"]
 global = ["appdirs (>=1.4.4)"]
 gen_docs = ["pytoolconfig", "sphinx-rtd-theme (>=1.0.0)", "sphinx-autodoc-typehints (>=1.18.1)", "sphinx (>=4.5.0)"]
 doc = ["sphinx (>=4.5.0)", "tabulate (>=0.8.9)"]
+
+[[package]]
+name = "pytz"
+version = "2023.3.post1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "qrcode"
+version = "7.4.2"
+description = "QR Code image generator"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+pypng = "*"
+typing-extensions = "*"
+
+[package.extras]
+all = ["zest.releaser", "tox", "pytest", "pytest-cov", "pillow (>=9.1.0)"]
+dev = ["tox", "pytest", "pytest-cov"]
+maintainer = ["zest.releaser"]
+pil = ["pillow (>=9.1.0)"]
+test = ["coverage", "pytest"]
+
+[[package]]
+name = "rapid-router"
+version = "5.15.8"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+cfl-common = "*"
+django = "3.2.23"
+django-csp = "3.7"
+django-js-reverse = "0.9.1"
+django-pipeline = "2.0.8"
+djangorestframework = "3.13.1"
+libsass = "0.22.0"
+more-itertools = "8.7.0"
+pyhamcrest = "2.0.2"
 
 [[package]]
 name = "replit"
@@ -376,6 +715,27 @@ doc = ["sphinx-rtd-theme (>=1.0.0)", "sphinx-autodoc-typehints (>=1.18.1)", "sph
 dev = ["build (>=0.7.0)", "pytest-timeout (>=2.1.0)", "pytest (>=7.0.1)"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "sqlparse"
+version = "0.4.4"
+description = "A non-validating SQL parser."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+dev = ["flake8", "build"]
+doc = ["sphinx"]
+test = ["pytest", "pytest-cov"]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -390,6 +750,14 @@ description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "tzdata"
+version = "2023.3"
+description = "Provider of IANA time zone data"
+category = "main"
+optional = false
+python-versions = ">=2"
 
 [[package]]
 name = "ujson"
@@ -436,11 +804,14 @@ python-versions = "*"
 
 [[package]]
 name = "yapf"
-version = "0.32.0"
+version = "0.33.0"
 description = "A formatter for Python code."
 category = "dev"
 optional = false
 python-versions = "*"
+
+[package.dependencies]
+tomli = ">=2.0.1"
 
 [[package]]
 name = "yarl"
@@ -469,18 +840,31 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "5272789fa19d0f98d7826ffaa2db1913876d7235622c4291178a3a1b8466e3c1"
+content-hash = "d4c02a606bc6341a3db4f00851f2073d85bb1f9b70d13e526500922b97d7defd"
 
 [metadata.files]
 aiohttp = []
 aiosignal = []
+asgiref = []
 async-timeout = []
 attrs = []
 certifi = []
+cfl-common = []
 charset-normalizer = []
 click = []
 colorama = []
 debugpy = []
+django = []
+django-countries = []
+django-csp = []
+django-formtools = []
+django-js-reverse = []
+django-otp = []
+django-phonenumber-field = []
+django-pipeline = []
+django-two-factor-auth = []
+djangorestframework = []
+docstring-to-markdown = []
 flask = []
 frozenlist = []
 idna = []
@@ -488,22 +872,36 @@ importlib-metadata = []
 itsdangerous = []
 jedi = []
 jinja2 = []
+libsass = []
 markupsafe = []
+more-itertools = []
 multidict = []
 numpy = []
 packaging = []
+pandas = []
 parso = []
+pgeocode = []
 pluggy = []
 pyflakes = []
+pyhamcrest = []
+pyjwt = []
 pyparsing = []
+pypng = []
+python-dateutil = []
 python-lsp-jsonrpc = []
 python-lsp-server = []
 pytoolconfig = []
+pytz = []
+qrcode = []
+rapid-router = []
 replit = []
 requests = []
 rope = []
+six = []
+sqlparse = []
 tomli = []
 typing-extensions = []
+tzdata = []
 ujson = []
 urllib3 = []
 werkzeug = []

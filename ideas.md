@@ -10,4 +10,5 @@ Once we can defend against said attacks, let's try and execute them.
 - control the middle of the board
 - encircle short snakes
 
+Edge detection completely not working 
 But the summary of all these ideas is we want a snake that can THINK while following rules. A possible learning exercise may be putting these directives into a syntax, then asking an AI to convert them into notes!
